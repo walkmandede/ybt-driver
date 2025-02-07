@@ -34,9 +34,11 @@ class ServicePageController extends GetxController {
 
   Future<void> initLoad() async {
     timer = Timer.periodic(const Duration(seconds: 5), (_) async {
-      final result = await appFunctions.getCurrentLocation();
-      if (result != null) {
-        proceedUpdateNewLocation(location: result);
+      if (!xTesting) {
+        final result = await appFunctions.getCurrentLocation();
+        if (result != null) {
+          proceedUpdateNewLocation(location: result);
+        }
       }
     });
   }
